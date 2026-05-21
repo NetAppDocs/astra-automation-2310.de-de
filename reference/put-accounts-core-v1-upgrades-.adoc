@@ -1,0 +1,542 @@
+---
+sidebar: sidebar 
+api: true 
+explorer: false 
+permalink: reference/put-accounts-core-v1-upgrades-.html 
+summary: Ein Upgrade modifizieren 
+---
+= Ein Upgrade modifizieren
+:allow-uri-read: 
+
+
+[.api-doc-operation .api-doc-operation-put]#PUT# [.api-doc-code-block]#`/accounts/{account_id}/core/v1/upgrades/{upgrade_id}`#
+
+Ersetzt die gesamte gespeicherte Ressource durch den bereitgestellten JSON-Anfragetext, wobei Schlüsselwerte erhalten bleiben, die vom Benutzer nicht geändert werden können.
+
+*Nebenwirkungen*
+
+* Aktualisierungen werden je nach gewünschtem Zustand geplant oder ausgeführt.
+
+
+
+
+== Parameter
+
+[cols="5*"]
+|===
+| Name | Typ | In | Erforderlich | Beschreibung 
+
+
+| Konto-ID | Zeichenkette | Pfad | True  a| 
+ID der übergeordneten Kontoressource
+
+* Beispiel: {{.Account}}
+
+
+
+
+| Upgrade-ID | Zeichenkette | Pfad | True  a| 
+ID der aufzulistenden Upgrade-Sammlung
+
+|===
+
+
+== Anfragetext
+
+Ersetzt die gesamte gespeicherte Ressource durch den bereitgestellten JSON-Anfragetext, wobei Schlüsselwerte erhalten bleiben, die vom Benutzer nicht geändert werden können.
+
+*Nebenwirkungen*
+
+* Aktualisierungen werden je nach gewünschtem Zustand geplant oder ausgeführt.
+
+
+[cols="4*"]
+|===
+| Name | Typ | Erforderlich | Beschreibung 
+
+
+| Typ | Zeichenkette | True  a| 
+Medientyp der Ressource. Definierte Werte sind:
+
+* "application/astra-upgrade"
+
+
+
+
+| Version | Zeichenkette | True  a| 
+Version der Ressource. Definierte Werte sind:
+
+* "1,0"
+* "1,1"
+
+
+
+
+| id | Zeichenkette | Falsch  a| 
+Weltweit eindeutiger Bezeichner der Ressource. Definierte Werte sind:
+
+* Entspricht dem UUIDv4-Schema
+
+
+
+
+| componentName | Zeichenkette | Falsch  a| 
+JSON-Zeichenkette mit dem Namen des Softwaretyps, der aktualisiert werden kann. Definierte Werte sind:
+
+* "acc"
+* "acs"
+* "Trident"
+* "kubernetes"
+
+
+
+
+| componentInstance | Zeichenkette | Falsch  a| 
+JSON-String, der den URI der Komponente enthält, die aktualisiert werden kann. Definierte Werte sind:
+
+* Mindestlänge: 3
+* Maximale Länge: 4095
+
+
+
+
+| componentID | Zeichenkette | Falsch  a| 
+JSON-String, der einen global eindeutigen Bezeichner der Komponente enthält, die aktualisiert werden kann. Definierte Werte sind:
+
+* Entspricht dem Astra-Identifikatorschema
+
+
+
+
+| upgradeVersion | Zeichenkette | Falsch  a| 
+JSON-String, der die SemVer der Software-Image-Datei enthält, auf die ein Upgrade durchgeführt werden kann. Definierte Werte sind:
+
+* Entspricht dem SemVer Schema
+
+
+
+
+| currentVersion | Zeichenkette | Falsch  a| 
+JSON-String, der die aktuelle SemVer der zu aktualisierenden Entität enthält. Definierte Werte sind:
+
+* Entspricht dem SemVer Schema
+
+
+
+
+| Abhängigkeiten | Array[string] | Falsch  a| 
+JSON-Array von JSON-Strings, die jeweils die UUID eines Upgrades enthalten, das abgeschlossen sein muss, bevor dieses Upgrade fortgesetzt werden kann. Wird verwendet, um zu bestimmen, welche Upgrades als Voraussetzungen durchgeführt werden und in welcher Reihenfolge. Definierte Werte sind:
+
+* Entspricht dem Astra-Identifikatorschema
+
+
+
+
+| Zustand | Zeichenkette | Falsch  a| 
+JSON-String, der einen Wert enthält, der den Betriebsstatus des Upgrades angibt. Wenn Auto-Upgrade aktiviert ist, beginnen Upgrades im Status "geplant". Andernfalls beginnen Upgrades im Status "vorgeschlagen". Definierte Werte sind:
+
+* "nicht verfügbar" - Das Upgrade ist derzeit nicht verfügbar
+* "vorgeschlagen" - Das Upgrade wird vorgeschlagen, aber nicht automatisch ausgeführt, bis es genehmigt ist
+* "Geplant" - Das Upgrade ist genehmigt, kann aber aufgrund von Abhängigkeiten, Zeitfenstern oder verfügbaren Ressourcen noch nicht installiert werden
+* "running" - Die Aktualisierung wird durchgeführt
+* "complete" - Das Upgrade ist abgeschlossen
+* "fehlgeschlagen" - Das Upgrade wurde nicht abgeschlossen
+
+
+
+
+| stateDesired | Zeichenkette | Falsch  a| 
+JSON-String, der einen Wert enthält, der den gewünschten Zustand für "state" angibt. Dieses Feld ist nur enthalten, wenn der Benutzer direkt eine Änderung des Zustands der Ressource anfordern kann. Definierte Werte sind:
+
+* "vorgeschlagen" - Das Upgrade ist nicht genehmigt und darf nicht durchgeführt werden
+* "geplant" - Das Upgrade ist genehmigt und muss innerhalb des angegebenen Zeitfensters durchgeführt werden
+* "laufend" - Das Upgrade muss sofort durchgeführt werden, unabhängig vom Zeitfenster
+
+
+
+
+| stateDetails | Array[link:#type_astra_stateDetail["type_astra_stateDetail"]] | Falsch  a| 
+Ein JSON-Array mit JSON-Objekten, das zusätzliche Details zum aktuellen „Zustand“ auflistet. Sind keine Details verfügbar, ist dieses Array leer.
+
+* Mindestanzahl: 0
+
+
+
+
+| Metadaten | link:#type_astra_metadata_update["type_astra_metadata_update"] | Falsch  a| 
+Client- und dienstspezifische Metadaten, die der Ressource zugeordnet sind. Definierte Werte sind:
+
+* Entspricht dem Astra-Metadatenschema. Falls beim Aktualisieren nichts anderes angegeben wird, werden die Bezeichnungen, creationTimestamp und createdBy des Metadatenobjekts unverändert beibehalten.
+
+
+|===
+.Beispielanfrage
+[%collapsible]
+====
+[source, json, subs="+macros"]
+----
+{
+  "type": "application/astra-upgrade",
+  "version": "1.1",
+  "stateDesired": "running"
+}
+----
+====
+
+
+== Antwort
+
+[source]
+----
+Status: 204, Indicates if the upgrade resource was updated.
+----
+
+
+== Antwort
+
+[source]
+----
+Status: 401, Unauthorized
+----
+[cols="4*"]
+|===
+| Name | Typ | Erforderlich | Beschreibung 
+
+
+| Typ | Zeichenkette | True  a| 
+
+
+
+| Titel | Zeichenkette | True  a| 
+
+
+
+| Detail | Zeichenkette | True  a| 
+
+
+
+| Status | Zeichenkette | True  a| 
+
+
+
+| Korrelations-ID | Zeichenkette | Falsch  a| 
+
+|===
+.Beispielantwort
+[%collapsible]
+====
+[source, json, subs="+macros"]
+----
+{
+  "type": "https://astra.netapp.io/problems/3",
+  "title": "Missing bearer token",
+  "detail": "The request is missing the required bearer token.",
+  "status": "401"
+}
+----
+====
+
+
+== Antwort
+
+[source]
+----
+Status: 400, Bad request
+----
+[cols="4*"]
+|===
+| Name | Typ | Erforderlich | Beschreibung 
+
+
+| Typ | Zeichenkette | True  a| 
+
+
+
+| Titel | Zeichenkette | True  a| 
+
+
+
+| Detail | Zeichenkette | True  a| 
+
+
+
+| Status | Zeichenkette | True  a| 
+
+
+
+| Korrelations-ID | Zeichenkette | Falsch  a| 
+
+
+
+| invalidFields | Array[link:#invalidFields["invalidFields"]] | Falsch  a| 
+Liste ungültiger Anfragetextfelder
+
+|===
+.Beispielantwort
+[%collapsible]
+====
+[source, json, subs="+macros"]
+----
+{
+  "type": "https://astra.netapp.io/problems/5",
+  "title": "Invalid query parameters",
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400"
+}
+----
+====
+
+
+== Antwort
+
+[source]
+----
+Status: 409, Conflict
+----
+[cols="4*"]
+|===
+| Name | Typ | Erforderlich | Beschreibung 
+
+
+| Typ | Zeichenkette | True  a| 
+
+
+
+| Titel | Zeichenkette | True  a| 
+
+
+
+| Detail | Zeichenkette | True  a| 
+
+
+
+| Status | Zeichenkette | True  a| 
+
+
+
+| Korrelations-ID | Zeichenkette | Falsch  a| 
+
+
+
+| invalidFields | Array[link:#invalidFields["invalidFields"]] | Falsch  a| 
+Liste ungültiger Anfragetextfelder
+
+|===
+.Beispielantwort
+[%collapsible]
+====
+[source, json, subs="+macros"]
+----
+{
+  "type": "https://astra.netapp.io/problems/10",
+  "title": "JSON resource conflict",
+  "detail": "The request body JSON contains a field that conflicts with an idempotent value.",
+  "status": "409"
+}
+----
+====
+
+
+== Antwort
+
+[source]
+----
+Status: 403, Forbidden
+----
+[cols="4*"]
+|===
+| Name | Typ | Erforderlich | Beschreibung 
+
+
+| Typ | Zeichenkette | True  a| 
+
+
+
+| Titel | Zeichenkette | True  a| 
+
+
+
+| Detail | Zeichenkette | True  a| 
+
+
+
+| Status | Zeichenkette | True  a| 
+
+
+
+| Korrelations-ID | Zeichenkette | Falsch  a| 
+
+|===
+.Beispielantwort
+[%collapsible]
+====
+[source, json, subs="+macros"]
+----
+{
+  "type": "https://astra.netapp.io/problems/11",
+  "title": "Operation not permitted",
+  "detail": "The requested operation isn't permitted.",
+  "status": "403"
+}
+----
+====
+
+
+== Fehler
+
+[source]
+----
+Status: 404, Not found
+----
+[cols="4*"]
+|===
+| Name | Typ | Erforderlich | Beschreibung 
+
+
+| Typ | Zeichenkette | True  a| 
+
+
+
+| Titel | Zeichenkette | True  a| 
+
+
+
+| Detail | Zeichenkette | True  a| 
+
+
+
+| Status | Zeichenkette | True  a| 
+
+
+
+| Korrelations-ID | Zeichenkette | Falsch  a| 
+
+|===
+.Beispiel-Fehlermeldung
+[%collapsible]
+====
+[source, json, subs="+macros"]
+----
+{
+  "type": "https://astra.netapp.io/problems/1",
+  "title": "Resource not found",
+  "detail": "The resource specified in the request URI wasn't found.",
+  "status": "404"
+}
+----
+====
+
+
+== Definitionen
+
+.Siehe Definitionen
+[%collapsible]
+====
+[role="api-collapsible-fifth-title"]
+additionalDetails
+
+[role="api-collapsible-fifth-title"]
+type_astra_stateDetail
+
+[cols="4*"]
+|===
+| Name | Typ | Erforderlich | Beschreibung 
+
+
+| Typ | Zeichenkette | True  a| 
+
+
+
+| Titel | Zeichenkette | True  a| 
+
+
+
+| Detail | Zeichenkette | True  a| 
+
+
+
+| additionalDetails | link:#additionalDetails["additionalDetails"] | Falsch  a| 
+
+|===
+[role="api-collapsible-fifth-title"]
+Typ_Astra_Label
+
+[cols="4*"]
+|===
+| Name | Typ | Erforderlich | Beschreibung 
+
+
+| Name | Zeichenkette | True  a| 
+
+
+
+| Wert | Zeichenkette | True  a| 
+
+|===
+[role="api-collapsible-fifth-title"]
+type_astra_metadata_update
+
+Client- und dienstspezifische Metadaten, die der Ressource zugeordnet sind. Definierte Werte sind:
+
+* Entspricht dem Astra-Metadatenschema. Falls beim Aktualisieren nichts anderes angegeben wird, werden die Bezeichnungen, creationTimestamp und createdBy des Metadatenobjekts unverändert beibehalten.
+
+
+[cols="4*"]
+|===
+| Name | Typ | Erforderlich | Beschreibung 
+
+
+| Etiketten | Array[link:#type_astra_label["Typ_Astra_Label"]] | Falsch  a| 
+
+
+
+| CreationZeitstempel | Zeichenkette | Falsch  a| 
+
+
+
+| Änderungszeitstempel | Zeichenkette | Falsch  a| 
+
+
+
+| Erstellt von | Zeichenkette | Falsch  a| 
+
+
+
+| modifiedBy | Zeichenkette | Falsch  a| 
+
+|===
+[role="api-collapsible-fifth-title"]
+invalidParams
+
+[cols="4*"]
+|===
+| Name | Typ | Erforderlich | Beschreibung 
+
+
+| Name | Zeichenkette | True  a| 
+Name des ungültigen Abfrageparameters
+
+
+
+| Grund | Zeichenkette | True  a| 
+Grund, warum der Abfrageparameter ungültig ist
+
+|===
+[role="api-collapsible-fifth-title"]
+invalidFields
+
+[cols="4*"]
+|===
+| Name | Typ | Erforderlich | Beschreibung 
+
+
+| Name | Zeichenkette | True  a| 
+Name des ungültigen Anfragetextfelds
+
+
+
+| Grund | Zeichenkette | True  a| 
+Grund, warum das Anfragekörperfeld ungültig ist
+
+|===
+====
