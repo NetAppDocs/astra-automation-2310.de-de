@@ -18,6 +18,7 @@ Sie können die verfügbaren Storage-Back-Ends auflisten.
 
 
 
+[[1-list-the-backends]]
 === 1. Listen Sie die Back-Ends auf
 
 Führen Sie den folgenden REST-API-Aufruf aus.

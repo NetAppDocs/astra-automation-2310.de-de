@@ -18,12 +18,14 @@ Sie können die verfügbaren Cluster in einer bestimmten Cloud auflisten.
 
 
 
+[[1-select-the-cloud]]
 === 1. Wählen Sie die Cloud
 
 Führen Sie den Workflow aus link:../workflows_infra/wf_list_clouds.html["Clouds auflisten"] Wählen Sie dann die Cloud mit den Clustern aus.
 
 
 
+[[2-list-the-clusters]]
 === 2. Listen Sie die Cluster auf
 
 Führen Sie den folgenden REST-API-Aufruf durch, um die Cluster in einer bestimmten Cloud aufzulisten.

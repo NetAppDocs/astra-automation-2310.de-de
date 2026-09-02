@@ -18,6 +18,7 @@ Sie können die Applikationen auflisten, die aktuell vom Astra verwaltet werden.
 
 
 
+[[1-list-the-applications]]
 === 1. Listen Sie die Anwendungen auf
 
 Führen Sie den folgenden REST-API-Aufruf aus.

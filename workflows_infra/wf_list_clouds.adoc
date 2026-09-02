@@ -18,6 +18,7 @@ Sie können die definierten Clouds mit einem spezifischen Astra Konto auflisten.
 
 
 
+[[1-list-the-clouds]]
 === 1. Die Wolken auflisten
 
 Führen Sie den folgenden REST-API-Aufruf durch, um die Clouds aufzulisten.

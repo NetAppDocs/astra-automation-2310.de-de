@@ -18,6 +18,7 @@ Sie können die S3-Buckets für ein bestimmtes Astra-Konto auflisten.
 
 
 
+[[1-list-the-buckets]]
 === 1. Listen Sie die Eimer auf
 
 Führen Sie den folgenden REST-API-Aufruf durch, um die Buckets aufzulisten.

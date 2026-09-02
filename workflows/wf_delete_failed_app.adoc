@@ -18,36 +18,42 @@ Sie können eine verwaltete Anwendung möglicherweise nicht entfernen, wenn eine
 
 
 
+[[1-select-the-app-to-delete]]
 === 1. Wählen Sie die zu löschende App
 
 Führen Sie den Workflow aus link:wf_list_man_apps.html["Listen Sie die Apps auf"] Und wählen Sie die Anwendung aus, die Sie entfernen möchten.
 
 
 
+[[2-list-the-existing-backups-for-the-app]]
 === 2. Listen Sie die bestehenden Backups für die App auf
 
 Führen Sie den Workflow aus link:wf_list_backups.html["Listen Sie die Backups auf"].
 
 
 
+[[3-delete-all-the-backups]]
 === 3. Löschen Sie alle Backups
 
 Löschen Sie alle App-Backups durch Ausführen des Workflows link:wf_delete_backup.html["Löschen Sie ein Backup"] Für jedes Backup in der Liste.
 
 
 
+[[4-list-the-existing-snapshots-for-the-app]]
 === 4. Listen Sie die vorhandenen Snapshots für die App auf
 
 Führen Sie den Workflow aus link:wf_list_snapshots.html["Listen Sie die Snapshots auf"].
 
 
 
+[[5-delete-all-the-snapshots]]
 === 5. Löschen Sie alle Snapshots
 
 Führen Sie den Workflow aus link:wf_delete_snapshot.html["Löschen Sie einen Snapshot"] Von jedem Snapshot in der Liste.
 
 
 
+[[6-remove-the-application]]
 === 6. Entfernen Sie die Anwendung
 
 Führen Sie den Workflow aus link:wf_unmanage_app.html["Verwaltung einer Anwendung aufheben"] Um die Anwendung zu entfernen.

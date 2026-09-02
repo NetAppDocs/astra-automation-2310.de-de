@@ -18,6 +18,7 @@ Sie können die Benachrichtigungen für ein bestimmtes Astra-Konto auflisten. Di
 
 
 
+[[1-list-the-notifications]]
 === 1. Listen Sie die Benachrichtigungen auf
 
 Führen Sie den folgenden REST-API-Aufruf aus.

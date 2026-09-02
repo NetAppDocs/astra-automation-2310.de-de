@@ -18,6 +18,7 @@ Sie können die Kubernetes-Cluster auflisten, die derzeit vom Astra gemanagt wer
 
 
 
+[[1-list-the-managed-clusters]]
 === 1. Listen Sie die verwalteten Cluster auf
 
 Führen Sie den folgenden REST-API-Aufruf aus.

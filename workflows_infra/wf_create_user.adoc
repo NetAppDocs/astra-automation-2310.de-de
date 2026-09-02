@@ -18,12 +18,14 @@ Sie können einen Benutzer mit spezifischen Anmeldedaten und einer vordefinierte
 
 
 
+[[1-select-a-user-name]]
 === 1. Wählen Sie einen Benutzernamen
 
 Führen Sie den Workflow aus link:../workflows_infra/wf_list_users.html["Benutzer auflisten"] Und wählen Sie einen verfügbaren Namen aus, der derzeit nicht verwendet wird.
 
 
 
+[[2-create-the-user]]
 === 2. Erstellen Sie den Benutzer
 
 Führen Sie den folgenden REST-API-Aufruf aus, um einen Benutzer zu erstellen. Nach erfolgreichem Abschluss des Anrufs ist der neue Benutzer noch nicht nutzbar.
@@ -97,12 +99,14 @@ curl --location -i --request POST 'https://astra.netapp.io/accounts/<ACCOUNT_ID>
 ----
 
 
+[[3-optionally-select-the-allowed-namespaces]]
 === 3. Wählen Sie optional die zulässigen Namespaces
 
 Führen Sie den Workflow aus link:../workflows/wf_list_namespaces.html["Listen Sie die Namespaces auf"] Und wählen Sie die Namespaces aus, auf die Sie den Zugriff beschränken möchten.
 
 
 
+[[4-bind-the-user-to-a-role]]
 === 4. Binden Sie den Benutzer an eine Rolle
 
 Führen Sie den folgenden REST-API-Aufruf durch, um den Benutzer an eine Rolle zu binden. Das Beispiel unten beschränkt den Namespace-Zugriff nicht. Siehe link:../additional/rbac.html#enhanced-rbac-with-namespace-granularity["Erweiterte RBAC mit Namespace-Granularität"] Finden Sie weitere Informationen.
@@ -139,6 +143,7 @@ curl --location -i --request POST 'https://astra.netapp.io/accounts/<ACCOUNT_ID>
 ----
 
 
+[[5-create-a-credential]]
 === 5. Erstellen Sie eine Anmeldeinformation
 
 Führen Sie den folgenden REST-API-Aufruf durch, um eine Berechtigung zu erstellen und sie dem Benutzer zuzuordnen. Dieses Beispiel verwendet ein Passwort, das als base64-Wert angegeben wird. Der `name` Eigenschaft sollte die ID des im vorherigen Schritt zurückgegebenen Benutzers enthalten. Die Eingabeeigenschaft `change` Muss auch in base64 kodiert werden und bestimmt, ob der Benutzer bei der ersten Anmeldung sein Passwort ändern muss (`true` Oder `false`).
